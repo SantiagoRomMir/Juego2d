@@ -5,7 +5,8 @@ using UnityEngine;
 public class TileTrap : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision){
-        if(collision.gameObject.CompareTag("Player")){
+	// comentario desde maquina virtual 
+       if(collision.gameObject.CompareTag("Player")){
             collision.gameObject.GetComponent<PlayerControl>().GetDamage();
         }
         collision.gameObject.transform.position=collision.gameObject.GetComponent<PlayerControl>().lastPosition;
