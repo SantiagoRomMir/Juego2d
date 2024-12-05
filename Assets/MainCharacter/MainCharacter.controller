@@ -43,7 +43,10 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 4
     m_ConditionEvent: velY
-    m_EventTreshold: 0.3
+    m_EventTreshold: 0.1
+  - m_ConditionMode: 1
+    m_ConditionEvent: tocandoSuelo
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -950306037883035230}
   m_Solo: 0
@@ -52,8 +55,8 @@ AnimatorStateTransition:
   serializedVersion: 3
   m_TransitionDuration: 0.25
   m_TransitionOffset: 0
-  m_ExitTime: 0
-  m_HasExitTime: 1
+  m_ExitTime: 0.00000035236013
+  m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
@@ -94,6 +97,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 3
     m_ConditionEvent: velY
     m_EventTreshold: -0.1
+  - m_ConditionMode: 1
+    m_ConditionEvent: tocandoSuelo
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -950306037883035230}
   m_Solo: 0
@@ -156,6 +162,12 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
+  - m_Name: tocandoSuelo
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -180,20 +192,23 @@ AnimatorStateTransition:
   - m_ConditionMode: 4
     m_ConditionEvent: velY
     m_EventTreshold: -0.1
+  - m_ConditionMode: 2
+    m_ConditionEvent: tocandoSuelo
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 4382609572355285800}
   m_Solo: 0
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0
+  m_TransitionDuration: 0.32251453
   m_TransitionOffset: 0
   m_ExitTime: 0.75
   m_HasExitTime: 0
   m_HasFixedDuration: 1
-  m_InterruptionSource: 0
+  m_InterruptionSource: 2
   m_OrderedInterruption: 1
-  m_CanTransitionToSelf: 1
+  m_CanTransitionToSelf: 0
 --- !u!1102 &4382609572355285800
 AnimatorState:
   serializedVersion: 6
@@ -283,7 +298,10 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 3
     m_ConditionEvent: velY
-    m_EventTreshold: 0.3
+    m_EventTreshold: 0.1
+  - m_ConditionMode: 2
+    m_ConditionEvent: tocandoSuelo
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 4738034488591245137}
   m_Solo: 0
@@ -292,7 +310,7 @@ AnimatorStateTransition:
   serializedVersion: 3
   m_TransitionDuration: 0
   m_TransitionOffset: 0
-  m_ExitTime: 0.75
+  m_ExitTime: 0.75000006
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0

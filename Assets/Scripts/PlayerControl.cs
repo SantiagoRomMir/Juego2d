@@ -46,10 +46,16 @@ public class PlayerControl : MonoBehaviour
                 sprite.flipX=false;
             }
             TouchingFloor();
+            if(TouchingFloor()){
+                anim.SetBool("tocandoSuelo",true);
+            }else{
+                anim.SetBool("tocandoSuelo",false);
+            }
+
             Jump();
     }
     private bool TouchingFloor(){
-        RaycastHit2D touch= Physics2D.Raycast(transform.position+new Vector3(0,-2.1f,0),Vector2.down,0.2f);
+        RaycastHit2D touch= Physics2D.Raycast(transform.position+new Vector3(0,-2.1f,0),Vector2.down,0.4f);
         if(touch.collider !=null && !touch.collider.gameObject.CompareTag("Player")){
             saltos=0;
             if(!touch.collider.gameObject.CompareTag("Trap")){
@@ -63,7 +69,6 @@ public class PlayerControl : MonoBehaviour
             phisics.velocity=new Vector2(phisics.velocity.x,0);
             phisics.AddForce(Vector2.up*JumpForce, ForceMode2D.Impulse);
             saltos++;
-
         }
     }
     public void GetDamage(){
