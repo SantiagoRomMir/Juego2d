@@ -18,6 +18,7 @@ public class PlayerControl : MonoBehaviour
     public Canvas HUD;
     private bool invulnerable;
     private ControlHud controlHud;
+    private Animator anim;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +28,7 @@ public class PlayerControl : MonoBehaviour
         sprite=gameObject.GetComponent<SpriteRenderer>();
         controlHud=HUD.GetComponent<ControlHud>();
         controlHud.SetLife(currentLife,life);
+        anim=gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -36,7 +38,7 @@ public class PlayerControl : MonoBehaviour
         float inputX= Input.GetAxis("Horizontal");
 
             phisics.velocity = new Vector2( inputX * speedX, phisics.velocity.y);  
-
+            anim.SetFloat("ValvelX",phisics.velocity.magnitude);
             if(phisics.velocity.x<-0f){
                 sprite.flipX=true;
             }else if(phisics.velocity.x>0f){
