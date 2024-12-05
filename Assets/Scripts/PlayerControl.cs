@@ -39,6 +39,7 @@ public class PlayerControl : MonoBehaviour
 
             phisics.velocity = new Vector2( inputX * speedX, phisics.velocity.y);  
             anim.SetFloat("ValvelX",phisics.velocity.magnitude);
+            anim.SetFloat("velY",phisics.velocity.y);
             if(phisics.velocity.x<-0f){
                 sprite.flipX=true;
             }else if(phisics.velocity.x>0f){
