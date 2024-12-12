@@ -14,6 +14,7 @@ public class ControlEnemy : MonoBehaviour
     private SpriteRenderer sprite;
     private Rigidbody2D phisics;
     private Animator anim;
+    public int life;
     public GameObject[] drop;
     private int numeroDrop;
     // Start is called before the first frame update
@@ -126,6 +127,12 @@ public class ControlEnemy : MonoBehaviour
                 break;
             default:
             break;
+        }
+    }
+    public void getDamage(int damage){
+        life-=damage;
+        if(life<=0){
+            Destroy(gameObject);
         }
     }
 }
