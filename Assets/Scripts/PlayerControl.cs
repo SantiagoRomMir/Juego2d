@@ -20,100 +20,123 @@ public class PlayerControl : MonoBehaviour
     private bool invulnerable;
     private ControlHud controlHud;
     private Animator anim;
-    private bool canControl=true;
+    private bool canControl = true;
 
     // Start is called before the first frame update
     void Start()
     {
-        currentLife=life;
-        phisics=gameObject.GetComponent<Rigidbody2D>();
-        sprite=gameObject.GetComponent<SpriteRenderer>();
-        controlHud=HUD.GetComponent<ControlHud>();
-        controlHud.SetLife(currentLife,life);
-        anim=gameObject.GetComponent<Animator>();
+        currentLife = life;
+        phisics = gameObject.GetComponent<Rigidbody2D>();
+        sprite = gameObject.GetComponent<SpriteRenderer>();
+        controlHud = HUD.GetComponent<ControlHud>();
+        controlHud.SetLife(currentLife, life);
+        anim = gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-       if(canControl){
-        float inputX= Input.GetAxis("Horizontal");
+        if (canControl)
+        {
+            float inputX = Input.GetAxis("Horizontal");
 
-            phisics.velocity = new Vector2( inputX * speedX, phisics.velocity.y);  
-            anim.SetFloat("ValvelX",phisics.velocity.magnitude);
-            anim.SetFloat("velY",phisics.velocity.y);
-       }
-            if(phisics.velocity.x<-0f){
-                sprite.flipX=true;
-            }else if(phisics.velocity.x>0f){
-                sprite.flipX=false;
-            }
-            TouchingFloor();
-            if(TouchingFloor()){
-                anim.SetBool("tocandoSuelo",true);
-            }else{
-                anim.SetBool("tocandoSuelo",false);
-            }
-            if(Input.GetKeyDown(KeyCode.Z) && TouchingFloor()){
-                Attack();
-            }
+            phisics.velocity = new Vector2(inputX * speedX, phisics.velocity.y);
+            anim.SetFloat("ValvelX", phisics.velocity.magnitude);
+            anim.SetFloat("velY", phisics.velocity.y);
+        }
+        if (phisics.velocity.x < -0f)
+        {
+            sprite.flipX = true;
+        }
+        else if (phisics.velocity.x > 0f)
+        {
+            sprite.flipX = false;
+        }
+        TouchingFloor();
+        if (TouchingFloor())
+        {
+            anim.SetBool("tocandoSuelo", true);
+        }
+        else
+        {
+            anim.SetBool("tocandoSuelo", false);
+        }
+        if (Input.GetKeyDown(KeyCode.Z) && TouchingFloor())
+        {
+            Attack();
+        }
 
-            Jump();
+        Jump();
     }
-    private bool TouchingFloor(){
-        RaycastHit2D touch= Physics2D.Raycast(transform.position+new Vector3(0,-2.1f,0),Vector2.down,0.4f);
-        if(touch.collider !=null && !touch.collider.gameObject.CompareTag("Player")){
-            saltos=0;
-            if(!touch.collider.gameObject.CompareTag("Trap")){
-                lastPosition=gameObject.transform.position;
+    private bool TouchingFloor()
+    {
+        RaycastHit2D touch = Physics2D.Raycast(transform.position + new Vector3(0, -2.1f, 0), Vector2.down, 0.4f);
+        if (touch.collider != null && !touch.collider.gameObject.CompareTag("Player"))
+        {
+            saltos = 0;
+            if (!touch.collider.gameObject.CompareTag("Trap"))
+            {
+                lastPosition = gameObject.transform.position;
             }
         }
-        return touch.collider !=null;
+        return touch.collider != null;
     }
-    private void Jump(){
-        if(Input.GetKeyDown(KeyCode.Space) && saltos==0){
-            phisics.velocity=new Vector2(phisics.velocity.x,0);
-            phisics.AddForce(Vector2.up*JumpForce, ForceMode2D.Impulse);
+    private void Jump()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && saltos == 0)
+        {
+            phisics.velocity = new Vector2(phisics.velocity.x, 0);
+            phisics.AddForce(Vector2.up * JumpForce, ForceMode2D.Impulse);
             saltos++;
         }
     }
-    public void GetDamage(){
-        if(!invulnerable){
-        currentLife--;
-        controlHud.SetLife(currentLife,life);
-        invulnerable=true;
-        Invoke("MakeVulnerable",1f);
+    public void GetDamage()
+    {
+        if (!invulnerable)
+        {
+            currentLife--;
+            controlHud.SetLife(currentLife, life);
+            invulnerable = true;
+            Invoke("MakeVulnerable", 1f);
         }
-        
+
     }
-    private void MakeVulnerable(){
-        invulnerable=false;
+    private void MakeVulnerable()
+    {
+        invulnerable = false;
     }
-    public void AddMoney(int Money){
-        money+=Money;
+    public void AddMoney(int Money)
+    {
+        money += Money;
         controlHud.SetMoney(money);
     }
-    public void Attack(){
+    public void Attack()
+    {
         anim.SetTrigger("Attack");
         StartCoroutine(StopCharacter());
     }
-    private IEnumerator StopCharacter(){
-        canControl=false;
-        phisics.velocity = new Vector2( 0, phisics.velocity.y);
+    private IEnumerator StopCharacter()
+    {
+        canControl = false;
+        phisics.velocity = new Vector2(0, phisics.velocity.y);
         yield return new WaitForSeconds(0.75f);
-        canControl=true;
+        canControl = true;
     }
-    public void Hit(){
+    public void Hit()
+    {
         RaycastHit2D touch;
-        if(sprite.flipX==false){
-            touch= Physics2D.Raycast(transform.position+new Vector3(0.65f,0,0),Vector2.right,3.2f);
-        }else{
-            touch= Physics2D.Raycast(transform.position+new Vector3(0.65f,0,0),Vector2.left,3.2f);
+        if (sprite.flipX == false)
+        {
+            touch = Physics2D.Raycast(transform.position + new Vector3(0.95f, 0, 0), Vector2.right, 3.2f);
         }
-        if(touch.transform!=null && touch.transform.gameObject.CompareTag("Enemy")){
-           touch.transform.gameObject.GetComponent<ControlEnemy>().getDamage(damage);
+        else
+        {
+            touch = Physics2D.Raycast(transform.position + new Vector3(-0.95f, 0, 0), Vector2.right, -3.2f);
         }
-        Debug.Log(touch.transform.position);
+        if (touch.transform != null && touch.transform.gameObject.CompareTag("Enemy"))
+        {
+            touch.transform.gameObject.GetComponent<ControlEnemy>().getDamage(damage);
+        }
     }
 }
 
