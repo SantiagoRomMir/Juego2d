@@ -160,7 +160,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'pasta:'
+  m_text: 'Dinero:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -253,8 +253,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -113, y: -56}
-  m_SizeDelta: {x: 214.03601, y: 100}
+  m_AnchoredPosition: {x: -122.0549, y: -25.1069}
+  m_SizeDelta: {x: 232.1457, y: 38.2139}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &221343415
 PrefabInstance:
@@ -21444,6 +21444,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1971914936}
+    - target: {fileID: 7882393111719298159, guid: ba1d285fbc4097845b05308d0fb63d2b, type: 3}
+      propertyPath: dificultad
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -21662,6 +21666,10 @@ PrefabInstance:
       propertyPath: posEnd
       value: 77.52
       objectReference: {fileID: 0}
+    - target: {fileID: 7882393111719298159, guid: ba1d285fbc4097845b05308d0fb63d2b, type: 3}
+      propertyPath: dificultad
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -21705,7 +21713,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: PlaceHolder
+  m_text: 10
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -22036,6 +22044,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1971914936}
+    - target: {fileID: 7882393111719298159, guid: ba1d285fbc4097845b05308d0fb63d2b, type: 3}
+      propertyPath: dificultad
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

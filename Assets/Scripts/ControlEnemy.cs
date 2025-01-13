@@ -3,8 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class ControlEnemy : MonoBehaviour
 {
+    public enum Dificultad{
+        facil,
+        normal,
+        dificil
+    }
+    public Dificultad dificultad;
     public float speedEenemy;
     private float posInitial;
     private int stop = 1;
@@ -19,9 +26,13 @@ public class ControlEnemy : MonoBehaviour
     public GameObject[] drop;
     private int numeroDrop;
     public bool move;
+    
     // Start is called before the first frame update
     void Start()
     {
+        if((int)dificultad>PlayerPrefs.GetInt("dificultad")){
+            Destroy(gameObject);
+        };
         posInitial = transform.position.x;
         sprite = gameObject.GetComponent<SpriteRenderer>();
         direction = -1;
@@ -67,7 +78,7 @@ public class ControlEnemy : MonoBehaviour
     }
     private void Movement()
     {
-        phisics.velocity = new Vector2(direction * speedEenemy * stop, phisics.velocity.y);
+        phisics.velocity = new Vector2(direction * speedEenemy *PlayerPrefs.GetFloat("dificultadV") * stop, phisics.velocity.y);
 
         if (posEnd < posInitial)
         {
@@ -174,11 +185,11 @@ public class ControlEnemy : MonoBehaviour
     public void getDamage(int damage)
     {
         life -= damage;
-        Debug.Log(life);
         if (life <= 0)
         {
             RandomDrop();
             Destroy(gameObject);
         }
     }
+ 
 }
