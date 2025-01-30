@@ -163,24 +163,8 @@ public class ControlEnemy : MonoBehaviour
     }
     public void RandomDrop()
     {
-        numeroDrop = Random.Range(0, 5);
-        switch (numeroDrop)
-        {
-            case 0:
-                Instantiate(drop[numeroDrop], transform.position, Quaternion.identity);
-                break;
-            case 1:
-                Instantiate(drop[numeroDrop], transform.position, Quaternion.identity);
-                break;
-            case 2:
-                Instantiate(drop[numeroDrop], transform.position, Quaternion.identity);
-                break;
-            case 3:
-                Instantiate(drop[numeroDrop], transform.position, Quaternion.identity);
-                break;
-            case 4:
-                break;
-        }
+        numeroDrop = Random.Range(0, drop.Length-1);
+        Instantiate(drop[numeroDrop], transform.position, Quaternion.identity);
     }
     public void getDamage(int damage)
     {

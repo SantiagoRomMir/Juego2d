@@ -45,6 +45,6 @@ public class ControlMenu : MonoBehaviour
         cambiarEscena();
     }
     private void cambiarEscena(){
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 }
